@@ -10,6 +10,8 @@ async function getNotes() {
     _id: note._id.toString(),
   }));
 }
+
+
 export default async function Home() {
   const notes = await getNotes();
   return (
@@ -17,7 +19,8 @@ export default async function Home() {
       <div className="container mx-auto p-4 text-white">
         <h1 className="text-3xl font-bold mb-6">Welcome to the Notes App</h1>
         <div>
-          <NoteClient initialNotes={notes} />
+          <NoteClient  initialNotes={notes} />
+          {/* <CopyNote databaseNotes ={notes}/> */}
         </div>
       </div>
     </main>
