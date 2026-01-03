@@ -19,3 +19,17 @@ export const createTodo = async (data) => {
     return { success: false, error: error.message || "Error to create todo" };
   }
 };
+
+export const getTodos = async () => {
+  try {
+    await connectToDatabase();
+    const todos = await todoModel.find({}).sort({createdAt: -1}).lean();
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(todos)),
+    };
+  } catch (error) {
+    console.error("Error getting todos:", error);
+    return { success: false, error: error.message || "Error to get todos" };
+  }
+}
